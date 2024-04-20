@@ -41,12 +41,12 @@ from bot.plugins.status_message_fn import (
 
 from bot.commands import Command
 from bot.plugins.call_back_button_handler import button
-sudo_users = "6885162066" 
+sudo_users = "6691641006" 
 crf.append("28")
-codec.append("libx265")
-resolution.append("1280x720")
+codec.append("libx264")
+resolution.append("854x480 ")
 preset.append("veryfast")
-audio_b.append("48k")
+audio_b.append("40k")
 # 🤣
 
 
@@ -177,7 +177,7 @@ if __name__ == "__main__" :
     async def restarter(app, message):
         data.clear()
         if message.chat.id not in AUTH_USERS:
-            return await message.reply_text("You are not authorised to use this bot contact @cmd_rulf")
+            return await message.reply_text("You are not authorised to use this bot contact @Rimuru_AS")
         query = await message.reply_text("Successfully cleared Queue ...📚")
       
       
@@ -186,7 +186,7 @@ if __name__ == "__main__" :
     @app.on_message(filters.incoming & (filters.video | filters.document))
     async def help_message(app, message):
         if message.chat.id not in AUTH_USERS:
-            return await message.reply_text("You are not authorised to use this bot contact @cmd_rulf")
+            return await message.reply_text("You are not authorised to use this bot contact @Rimuru_AS")
         query = await message.reply_text("Added to Queue ⏰...\nPlease be patient, Compress will start soon", quote=True)
         data.append(message)
         if len(data) == 1:
@@ -196,7 +196,7 @@ if __name__ == "__main__" :
     @app.on_message(filters.incoming & (filters.photo))
     async def help_message(app, message):
         if message.chat.id not in AUTH_USERS:
-            return await message.reply_text("You are not authorised to use this bot contact @cmd_rulf")
+            return await message.reply_text("You are not authorised to use this bot contact @Rimuru_AS")
         os.system('rm thumb.jpg')
         await message.download(file_name='/app/thumb.jpg')
         await message.reply_text('Thumbnail Added 🎴')
@@ -220,7 +220,7 @@ if __name__ == "__main__" :
    
     @app.on_message(filters.incoming & filters.command(["help", f"help@{BOT_USERNAME}"]))
     async def help_message(app, message):
-        await message.reply_text("Hi, I am <b>Video Encoder bot</b>\n\n➥ Send me your telegram files\n➥ I will encode them one by one as I have <b>queue feature</b>\n➥ Just send me the jpg/pic and it will be set as your custom thumbnail \n➥ For ffmpeg lovers - u can change crf by /eval crf.insert(0, 'crf value') \n\n<b>😎 Join -: https://t.me/+2DSmixSyvzU4ZGUy", quote=True)
+        await message.reply_text("Hi, I am  Video Encoder bot. \n\n➥ Send me your telegram files\n➥ I will encode them one by one. ", quote=True)
   
     @app.on_message(filters.incoming & filters.command(["log", f"log@{BOT_USERNAME}"]))
     async def help_message(app, message):
