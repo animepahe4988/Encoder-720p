@@ -6,7 +6,7 @@ from bot.get_cfg import get_config
 
 
 class Localisation:
-    START_TEXT = "Hello, \n\nThis is a Telegram <b>Video Encoder Bot</b>. \n\n<b>Please send me any Telegram big video file I will compress it as s small video file!</b> \n\n/help for more details. \n\n✨ Enjoy....."
+    START_TEXT = "Hello, \n\nThis is a Telegram Video Encoder Bot. Please send me any Telegram big video file I will compress it as s small video file! \n\n✨ /help for more details."
    
     ABS_TEXT = " Please don't be selfish."
     
@@ -17,13 +17,13 @@ class Localisation:
     
     UPLOAD_START = "Uploading ... 📤 \n"
     
-    COMPRESS_START = "Trying to encode ... 📀"
+    COMPRESS_START = "Encoding ... 📀"
     
     RCHD_BOT_API_LIMIT = "size greater than maximum allowed size (50MB). Neverthless, trying to upload."
     
     RCHD_TG_API_LIMIT = "Downloaded in {} seconds.\nDetected File Size: {}\nSorry. But, I cannot upload files greater than 1.95GB due to Telegram API limitations."
     
-    COMPRESS_SUCCESS = "© @cmd_rulf"
+    COMPRESS_SUCCESS = "Encoded by Anime Sensei"
 
     COMPRESS_PROGRESS = "⏳ ETA: {}\n🚀 Progress: {}%"
 
@@ -43,11 +43,11 @@ class Localisation:
     
     USER_ADDED_TO_DB = "User <a href='tg://user?id={}'>{}</a> added to {} till {}."
     
-    FF_MPEG_RO_BOT_STOR_AGE_ALREADY_EXISTS = "⚠️ Already one Process going on! ⚠️ \n\nCheck Live Status on @RulfEncoderLogs ."
+    FF_MPEG_RO_BOT_STOR_AGE_ALREADY_EXISTS = "⚠️ Already one Process going on! ⚠️ \n\nCheck Live Status on Anime Sensei Logs."
     
     HELP_MESSAGE = get_config(
         "STRINGS_HELP_MESSAGE",
-        "Hi, I am Video Compressor Bot \n\n1. Send me your telegram big video file \n2. Reply to the file with: `/compress 50` \n\nSupport Group: @cmd_rulf"
+        "Hi, I am Video Compressor Bot."
     )
     WRONG_MESSAGE = get_config(
         "STRINGS_WRONG_MESSAGE",
