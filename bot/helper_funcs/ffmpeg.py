@@ -12,6 +12,8 @@ import re
 import json
 import subprocess
 import math
+from hachoir.metadata import extractMetadata
+from hachoir.parser import createParser
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from bot.helper_funcs.display_progress import (
   TimeFormatter
@@ -26,7 +28,6 @@ from bot import (
     audio_b,
     preset,
     codec,
-    watermark,
     pid_list
 )
 
@@ -44,12 +45,11 @@ async def convert_video(video_file, output_directory, total_time, bot, message, 
      ## -vf eq=gamma=1.4:saturation=1.4
      ## lol 😂
     crf.append("28")
-    codec.append("libx265")
+    codec.append("libx264")
     resolution.append("1280x720")
     preset.append("veryfast")
-    audio_b.append("48k")
-    watermark.append('-vf "drawtext=fontfile=font.ttf:fontsize=25:fontcolor=white:bordercolor=black@0.50:x=w-tw-10:y=10:box=1:boxcolor=black@0.5:boxborderw=6:text=〄"')
-    file_genertor_command = f'ffmpeg -hide_banner -loglevel quiet -progress "{progress}" -i "{video_file}" {watermark[0]}  -c:v {codec[0]}  -map 0 -crf {crf[0]} -c:s copy -pix_fmt yuv420p -s {resolution[0]} -b:v 150k -c:a libopus -b:a {audio_b[0]} -preset {preset[0]}  "{out_put_file_name}" -y'
+    audio_b.append("35k")
+    file_genertor_command = f'ffmpeg -hide_banner -loglevel quiet -progress "{progress}" -i "{video_file}"  -c:v {codec[0]}  -map 0 -crf {crf[0]} -c:s copy -pix_fmt yuv420p -s {resolution[0]} -b:v 150k -c:a libopus -b:a {audio_b[0]} -preset {preset[0]}  "{out_put_file_name}" -y'
  #Done !!
     COMPRESSION_START_TIME = time.time()
     process = await asyncio.create_subprocess_shell(
@@ -66,7 +66,7 @@ async def convert_video(video_file, output_directory, total_time, bot, message, 
     with open(status, 'r+') as f:
       statusMsg = json.load(f)
       statusMsg['pid'] = process.pid
-      statusMsg['message'] = message.message_id
+      statusMsg['message'] = message.id
       f.seek(0)
       json.dump(statusMsg,f,indent=2)
     # os.kill(process.pid, 9)
@@ -133,7 +133,7 @@ async def convert_video(video_file, output_directory, total_time, bot, message, 
     r = stderr.decode()
     try:
         if er:
-           await message.edit_text(str(er) + "\n\n ERROR...🔧 Contact @cmd_rulf")
+           await message.edit_text(str(er) + "\n\n**ERROR** Contact @Chowdhury_Siam")
            os.remove(videofile)
            os.remove(out_put_file_name)
            return None
@@ -213,3 +213,9 @@ async def take_screen_shot(video_file, output_directory, ttl):
     else:
         return None
 # senpai I edited this,  maybe if it is wrong correct it 
+def get_width_height(video_file):
+    metadata = extractMetadata(createParser(video_file))
+    if metadata.has("width") and metadata.has("height"):
+        return metadata.get("width"), metadata.get("height")
+    else:
+        return 1280, 720
