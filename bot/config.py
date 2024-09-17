@@ -10,7 +10,7 @@ class Config(object):
     UPDATES_CHANNEL = get_config("UPDATES_CHANNEL", None) # Without `@` LOL
      # Get these values from my.telegram.org
     AUTH_USERS = set(
-        int(x) for x in get_config(
+        int(x) for x in get_config()
             "AUTH_USERS", "-1002217353256",
             should_prompt=True
         )
